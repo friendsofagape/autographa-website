@@ -1,0 +1,40 @@
+body {
+  @apply text-secondary tracking-wide;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0px 0px 1px rgb(0 0 0 / 20%), 0px 0px 1px rgb(1 0 5 / 10%);
+  }
+  .text-shadow-sm {
+    text-shadow: 1px 1px 3px rgb(36 37 47 / 25%);
+  }
+  .text-shadow-md {
+    text-shadow: 0px 1px 2px rgb(30 29 39 / 19%),
+      1px 2px 4px rgb(54 64 147 / 18%);
+  }
+  .text-shadow-lg {
+    text-shadow: 3px 3px 6px rgb(0 0 0 / 26%), 0 0 5px rgb(15 3 86 / 22%);
+  }
+  .text-shadow-xl {
+    text-shadow: 1px 1px 3px rgb(0 0 0 / 5%), 2px 4px 7px rgb(0 0 0 / 15%);
+  }
+  .text-shadow-none {
+    text-shadow: none;
+  }
+}
+
+h2.heading {
+  @apply my-10 text-center text-primary text-5xl font-bold tracking-wide uppercase;
+  /* @apply text-shadow-sm; */
+}
+
+h3.heading {
+  @apply my-5 text-secondary text-2xl font-semibold tracking-wide uppercase;
+}
