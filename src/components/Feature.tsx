@@ -21,7 +21,7 @@ export default function Feature({ icon, text, className, tags }: FeatureProps) {
       <div className="absolute bottom-7 right-5">
       {
         tags?.map((tag, index) => {
-          return <span key={index} className="p-1 px-3 mr-2 bg-secondary rounded-full text-xs tracking-widest text-white">{tag}</span>
+          return <span key={index} className="p-1 px-3 mr-2 bg-secondary rounded-full text-xxs font-semibold tracking-widest text-white">{tag}</span>
         })
         }
       </div>

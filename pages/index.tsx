@@ -48,11 +48,11 @@ export default function Index() {
             </div>
 
 
-            <ul className="pb-6 grid grid-cols-4 gap-20 w-2/3 mx-auto uppercase font-semibold border-b border-white border-opacity-20">
-              <li className="text-white">Translation mode</li>
-              <li>OBS mode</li>
-              <li>Audio mode</li>
-              <li>Machine Translation</li>
+            <ul className="grid grid-cols-4 w-2/3 mx-auto uppercase font-semibold cursor-pointer">
+              <li className="text-white hover:text-secondary border-b border-white hover:border-secondary pb-6">Translation mode</li>
+              <li className="relative border-b border-secondary hover:text-white hover:border-white">OBS mode<span className="absolute right-0 left-0 mx-auto w-24 p-1 px-2 rounded-full -mt-7 text-white font-bold text-xxs bg-highlight">coming soon</span></li>
+              <li className="relative border-b border-secondary hover:text-white hover:border-white">Audio mode<span className="absolute right-0 left-0 mx-auto w-24 p-1 px-2 rounded-full -mt-7 text-white font-bold text-xxs bg-highlight">coming soon</span></li>
+              <li className="relative border-b border-secondary hover:text-white hover:border-white">Machine Translation<span className="absolute right-0 left-0 mx-auto w-24 p-1 px-2 rounded-full -mt-7 text-white font-bold text-xxs bg-highlight">coming soon</span></li>
             </ul>
 
           </div>
@@ -70,7 +70,7 @@ export default function Index() {
 
         <h2 className="heading">Why another translation tool?</h2>
 
-        <div className="my-80 grid grid-cols-2 items-center">
+        <div className="my-40 grid grid-cols-2 items-center">
           <div className="px-40">
             <h3 className="heading">Free &amp; Open Source</h3>
             <p className="mb-20 prose">Autographa is free and open source and made available to all without any restrictions. Contributions are welcome!</p>
@@ -82,7 +82,7 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="my-80 grid grid-cols-2 items-center">
+        <div className="my-40 grid grid-cols-2 items-center">
           <div className="px-40 order-last">
             <h3 className="heading">User Centric</h3>
             <p className="mb-20 prose">The application is built from the ground up get you started with little or no training while enabling both beginners and vetrens to their best work!</p>
@@ -94,7 +94,7 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="my-80 grid grid-cols-2 items-center">
+        <div className="my-40 grid grid-cols-2 items-center">
           <div className="px-40">
             <h3 className="heading">Multilingual</h3>
             <p className="mb-20 prose">Autographa&apos;s User Interface is localized into Hindi,Arabic, Portuguese and Spanish and it supports rendering and editing complex scripts like Awami Nastaliq (right to left).</p>

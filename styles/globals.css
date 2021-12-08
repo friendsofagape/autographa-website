@@ -31,7 +31,7 @@ body {
 }
 
 h2.heading {
-  @apply my-10 text-center text-primary text-5xl font-bold tracking-wide uppercase;
+  @apply my-10 text-center text-primary text-5xl font-bold tracking-wide capitalize;
   /* @apply text-shadow-sm; */
 }
 

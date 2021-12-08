@@ -6,6 +6,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontSize: {
+        'xxs': '.6rem',
+      },
       colors: {
         primary: '#0073E5',
         primaryLHue: '#0099E5',
