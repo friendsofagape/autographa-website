@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from "framer-motion"
 import { Tab } from '@headlessui/react'
 import { classNames } from '@/utils/functions'
 
@@ -75,27 +76,41 @@ export default function Index() {
           <div className="container mx-auto">
             <Menu />
             <div className="py-40 text-center">
-              <h1 className="my-5 text-white text-8xl uppercase font-bold tracking-wider text-shadow-xl">Autographa</h1>
-              <p className="text-xl font-semibold leading-8">Scripture drafting and editing made simple</p>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false }}
+                transition={{ duration: 1 }}
+                variants={{
+                  visible: { opacity: 1, scale: 1, y: 0 },
+                  hidden: { opacity: 0, scale: 0.95, y: 20 }
+                }}>
+                <h1 className="my-5 text-white text-8xl uppercase font-bold tracking-wider text-shadow-xl">Autographa</h1>
+                <p className="text-xl font-semibold leading-8">Scripture drafting and editing made simple</p>
+              </motion.div>
 
               <div className="w-2/5 my-24 mx-auto flex">
                 <div className="w-1/2 mx-10 items-center">
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     href="#"
                     className="whitespace-nowrap block items-center justify-center px-8 py-4 border border-transparent rounded-lg shadow-sm 
                             text-2xl font-bold text-secondary bg-white hover:text-white hover:bg-secondary "
                   >
                     Try it online
-                  </a>
+                  </motion.a>
                 </div>
                 <div className="w-1/2 mx-10 flex flex-col items-center">
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     href="#"
                     className="whitespace-nowrap block items-center justify-center px-8 py-4 border border-transparent rounded-lg shadow-sm 
                             text-2xl font-bold text-white bg-secondary hover:text-secondary hover:bg-white"
                   >
                     Download
-                  </a>
+                  </motion.a>
                   <div className="flex gap-5 my-5">
                     <AppleLogo className="h-8 text-white" />
                     <WindowsLogo className="h-8 text-white" />
@@ -105,16 +120,7 @@ export default function Index() {
                 </div>
               </div>
 
-
-              {/* <ul className="grid grid-cols-4 w-2/3 mx-auto uppercase font-semibold cursor-pointer border-b border-secondary">
-                <li className="text-white hover:text-secondary border-b border-white hover:border-secondary pb-6">Translation mode</li>
-                <li className="relative border-b border-secondary hover:text-white hover:border-white">OBS mode<span className="absolute right-0 left-0 mx-auto w-24 p-1 px-2 rounded-full -mt-7 text-white font-bold text-xxs bg-highlight">coming soon</span></li>
-                <li className="relative border-b border-secondary hover:text-white hover:border-white">Audio mode<span className="absolute right-0 left-0 mx-auto w-24 p-1 px-2 rounded-full -mt-7 text-white font-bold text-xxs bg-highlight">coming soon</span></li>
-                <li className="relative border-b border-secondary hover:text-white hover:border-white">Machine Translation<span className="absolute right-0 left-0 mx-auto w-24 p-1 px-2 rounded-full -mt-7 text-white font-bold text-xxs bg-highlight">coming soon</span></li>
-              </ul> */}
-
-
-              <Tab.List className="w-2/3 mx-auto flex space-x-1 border-b border-secondary/20">
+              <Tab.List className="w-2/3 mx-auto flex space-x-1 border-b border-secondary/30">
                 {categories.map((category) => (
                   <Tab
                     key={category.id}
@@ -122,7 +128,7 @@ export default function Index() {
                       classNames(
                         'w-full py-5 leading-5 font-semibold uppercase relative rounded-t-xl hover:bg-white/[0.12]',
                         selected
-                          ? 'text-white border-b-4 border-white '
+                          ? 'text-white border-b-2 border-white '
                           : 'text-secondary hover:text-white'
                       )
                     }
@@ -144,13 +150,49 @@ export default function Index() {
         <Tab.Panels>
           {categories.map((posts, idx) => (
             <Tab.Panel key={idx} className="container mx-auto">
-              <div className="mx-auto -mt-80 w-2/3 p-5 bg-white/5 rounded-3xl">
-                <div className="p-5 bg-white/5 rounded-3xl">
-                  <div className="p-5 bg-white/5 rounded-3xl">
-                    <img className="rounded-xl shadow-lg" src={posts.image} alt="Editor" />
-                  </div>
-                </div>
-              </div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <AnimatePresence exitBeforeEnter>
+                  <motion.div
+                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div className="mx-auto -mt-80 w-2/3 p-5 bg-white/5 rounded-3xl">
+                      <motion.div
+                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <div className="p-5 bg-white/5 rounded-3xl">
+                          <motion.div
+                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <div className="p-5 bg-white/5 rounded-3xl">
+                              <motion.div
+                                animate={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 1 }}
+                              >
+                                <img className="rounded-xl shadow-lg" src={posts.image} alt="Editor" />
+                              </motion.div>
+                            </div>
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+              </motion.div>
             </Tab.Panel>
           ))}
         </Tab.Panels>
@@ -178,9 +220,18 @@ export default function Index() {
             <h3 className="heading">Cross-Platform</h3>
             <p className="prose text-white/60">Autographa is available both as a desktop application (Windows, Linux and MacOS) and as a website so that you can work from anywhere.</p>
           </div>
-          <div className="p-20 -mr-64">
+          <motion.div
+            className="p-20 -mr-64"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}
+            transition={{ duration: 1 }}
+            variants={{
+              visible: { opacity: 1, scale: 1, x: 0 },
+              hidden: { opacity: 0, scale: 1, x: 200 }
+            }}>
             <img className="rounded-2xl shadow-2xl p-2 bg-white" src="/images/editor-audio.png" alt="" />
-          </div>
+          </motion.div>
         </div>
 
         <div className="section">
@@ -190,9 +241,18 @@ export default function Index() {
             <h3 className="heading">Performance</h3>
             <p className="prose text-white/60">We use the latest technology to maximize performance and provide you with an uninterrupted work flow.</p>
           </div>
-          <div className="p-20 -ml-64">
+          <motion.div
+            className="p-20 -ml-64"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}
+            transition={{ duration: 1 }}
+            variants={{
+              visible: { opacity: 1, scale: 1, x: 0 },
+              hidden: { opacity: 0, scale: 1, x: -200 }
+            }}>
             <img className="rounded-2xl shadow-2xl p-2 bg-white" src="/images/editor-audio.png" alt="" />
-          </div>
+          </motion.div>
         </div>
 
         <div className="section">
@@ -202,9 +262,18 @@ export default function Index() {
             <h3 className="heading">CCBT ready</h3>
             <p className="prose text-white/60">Autographa has shown great success in being used on the field for translation projects using the Church Centric Bible Translation paradigm.</p>
           </div>
-          <div className="p-20 -mr-64">
+          <motion.div
+            className="p-20 -mr-64"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}
+            transition={{ duration: 1 }}
+            variants={{
+              visible: { opacity: 1, scale: 1, x: 0 },
+              hidden: { opacity: 0, scale: 1, x: 200 }
+            }}>
             <img className="rounded-2xl shadow-2xl p-2 bg-white" src="/images/editor-audio.png" alt="" />
-          </div>
+          </motion.div>
         </div>
 
 
