@@ -144,7 +144,13 @@ export default function Index() {
         <Tab.Panels>
           {categories.map((posts, idx) => (
             <Tab.Panel key={idx} className="container mx-auto">
-              <img className="mx-auto -mt-80 w-2/3 rounded-xl shadow-lg" src={posts.image} alt="Editor" />
+              <div className="mx-auto -mt-80 w-2/3 p-5 bg-white/5 rounded-3xl">
+                <div className="p-5 bg-white/5 rounded-3xl">
+                  <div className="p-5 bg-white/5 rounded-3xl">
+                    <img className="rounded-xl shadow-lg" src={posts.image} alt="Editor" />
+                  </div>
+                </div>
+              </div>
             </Tab.Panel>
           ))}
         </Tab.Panels>
