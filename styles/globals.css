@@ -36,5 +36,9 @@ h2.heading {
 }
 
 h3.heading {
-  @apply my-5 text-secondary text-2xl font-semibold tracking-wide uppercase;
+  @apply my-5 text-white text-2xl font-semibold tracking-wide uppercase;
+}
+
+.section {
+  @apply my-40 grid grid-cols-2 items-center bg-primary bg-gradient-to-tr from-primaryDHue to-primaryLHue rounded-3xl overflow-hidden
 }
