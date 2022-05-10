@@ -1,0 +1,21 @@
+overwrite: true
+schema:
+  - ${GRAPHQL_URL}:
+      headers:
+        Authorization: Bearer ${GITHUB_TOKEN}
+documents: "./src/graphql/**.graphql"
+generates:
+  ./src/graphql/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-query"
+    config:
+      fetcher:
+        endpoint: ${GRAPHQL_URL}
+        fetchParams:
+          headers:
+            Authorization: Bearer ${GITHUB_TOKEN}
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

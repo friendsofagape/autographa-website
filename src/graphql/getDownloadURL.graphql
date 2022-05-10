@@ -1,0 +1,22 @@
+query getDownloadURL { 
+    repository(owner: "friendsofagape", name: "autographa") {
+    releases(last: 1, orderBy: {field: CREATED_AT, direction: ASC}) {
+      nodes {
+        name
+        tagName
+        isLatest
+        releaseAssets(first: 4) {
+          edges {
+            node {
+              name
+              downloadUrl
+              contentType
+              size
+              createdAt
+            }
+          }
+        }
+      }
+    }
+  }
+}

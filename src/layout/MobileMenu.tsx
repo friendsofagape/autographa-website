@@ -114,7 +114,7 @@ export default function MobileMenu() {
                     href={item.href}
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
-                    <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
+                    <item.icon className="shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
                     <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
                   </a>
                 ))}
