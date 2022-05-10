@@ -1,8 +1,7 @@
-// import React from "react";
-import { classNames } from "@/utils/functions";
-
-import * as SolidIcons from "@heroicons/react/solid";
 import * as OutlineIcons from "@heroicons/react/outline";
+import * as SolidIcons from "@heroicons/react/solid";
+
+import { classNames } from "@/utils/functions";
 
 export type HeroIcon = keyof typeof SolidIcons | keyof typeof OutlineIcons;
 
@@ -33,7 +32,7 @@ export default function Feature({
   text,
   description,
   className,
-  tags,
+  // tags,
 }: FeatureProps) {
   return (
     <div

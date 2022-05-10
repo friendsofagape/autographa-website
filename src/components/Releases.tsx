@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-import Link from "next/link";
-
-import { useGetDownloadUrlQuery } from "../graphql/generated/graphql";
+import { useGetDownloadUrlQuery } from "@/graphql/graphql";
 
 import AppleLogo from "../../public/logos/apple.svg";
-import WindowsLogo from "../../public/logos/windows.svg";
 import LinuxLogo from "../../public/logos/linux.svg";
-
+import WindowsLogo from "../../public/logos/windows.svg";
 import styles from "../../styles/Home.module.css";
 
 export default function Releases() {
@@ -49,6 +46,7 @@ export default function Releases() {
             <a
               className="flex flex-col items-center justify-center gap-3"
               target="_blank"
+              rel="noreferrer"
               href={element?.node?.downloadUrl}
               key={index}
             >
@@ -61,6 +59,7 @@ export default function Releases() {
             <a
               className="flex flex-col items-center justify-center gap-3"
               target="_blank"
+              rel="noreferrer"
               href={element?.node?.downloadUrl}
               key={index}
             >
@@ -73,6 +72,7 @@ export default function Releases() {
             <a
               className="flex flex-col items-center justify-center gap-3"
               target="_blank"
+              rel="noreferrer"
               href={element?.node?.downloadUrl}
               key={index}
             >

@@ -1,20 +1,17 @@
 import React, { Fragment, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Tab } from "@headlessui/react";
-import { classNames } from "@/utils/functions";
 
-import Menu from "@/layout/Menu";
-import Footer from "@/layout/Footer";
+import { Tab } from "@headlessui/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Releases from "@/components/Releases";
-
-import SlidesGroup from "src/home/Slides";
-import { allSlideLists, allHeros } from "contentlayer/generated";
-
-import FeatureSection from "src/home/FeatureList";
-import { allFeatureLists } from "contentlayer/generated";
-
 import { useGetDownloadUrlQuery } from "@/graphql/graphql";
+import Footer from "@/layout/Footer";
+import Menu from "@/layout/Menu";
+import { classNames } from "@/utils/functions";
+import { allSlideLists, allHeros } from "contentlayer/generated";
+import { allFeatureLists } from "contentlayer/generated";
+import FeatureSection from "src/home/FeatureList";
+import SlidesGroup from "src/home/Slides";
 
 interface category {
   id: number;
@@ -63,7 +60,7 @@ export default function Index() {
     },
   ];
 
-  let [categories] = useState(categoriesItems);
+  const [categories] = useState(categoriesItems);
 
   return (
     <>
