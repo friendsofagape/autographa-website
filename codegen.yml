@@ -11,11 +11,13 @@ generates:
       - "typescript-operations"
       - "typescript-react-query"
     config:
-      fetcher:
-        endpoint: ${GRAPHQL_URL}
-        fetchParams:
-          headers:
-            Authorization: Bearer ${GITHUB_TOKEN}
+      fetcher: graphql-request
+    # config:
+    #   fetcher:
+    #     endpoint: ${GRAPHQL_URL}
+    #     fetchParams:
+    #       headers:
+    #         Authorization: Bearer ${GITHUB_TOKEN}
   ./graphql.schema.json:
     plugins:
       - "introspection"

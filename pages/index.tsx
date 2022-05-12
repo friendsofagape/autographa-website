@@ -2,9 +2,11 @@ import React, { Fragment, useState } from "react";
 
 import { Tab } from "@headlessui/react";
 import { motion, AnimatePresence } from "framer-motion";
+import { GraphQLClient } from "graphql-request";
+import { GetStaticProps } from "next";
 
 import Releases from "@/components/Releases";
-import { useGetDownloadUrlQuery } from "@/graphql/graphql";
+import { useGetDownloadUrlQuery, GetDownloadUrlDocument, GetDownloadUrlQuery } from "@/graphql/graphql";
 import Footer from "@/layout/Footer";
 import Menu from "@/layout/Menu";
 import { classNames } from "@/utils/functions";
@@ -13,47 +15,55 @@ import { allFeatureLists } from "contentlayer/generated";
 import FeatureSection from "src/home/FeatureList";
 import SlidesGroup from "src/home/Slides";
 
+const hasuraUrl = process.env.GRAPHQL_URL;
+const token = process.env.GITHUB_TOKEN;
+
+const client = new GraphQLClient(hasuraUrl as string, {
+  headers: {
+    authorization: `Bearer ${token as string}`,
+  },
+});
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  try {
+    const data: GetDownloadUrlQuery = await client.request(GetDownloadUrlDocument);
+    return {
+      props: { repo: data },
+      revalidate: 21600, // revalidate every 6 hours
+    };
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
 interface category {
-  id: number;
   title: string;
   image: string;
   isComingSoon: boolean;
 }
 
-export default function Index() {
-  const { data, isFetching, isLoading, isError } = useGetDownloadUrlQuery(
-    undefined,
-    { cacheTime: 43200000, staleTime: Infinity }
-  );
+export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
 
-  const repoNode = data?.repository?.releases?.nodes![0];
+  // const { status, data, error, isFetching } = useGetDownloadUrlQuery(client, undefined, { cacheTime: 43200000, staleTime: Infinity })
 
-  let relAssets = repoNode?.releaseAssets?.edges;
-  relAssets = relAssets?.filter(
-    (el) => el?.node?.contentType == "application/octet-stream"
-  );
 
   const categoriesItems: category[] = [
     {
-      id: 1,
       title: "Translation mode",
       image: "/images/editor.png",
       isComingSoon: false,
     },
     {
-      id: 2,
       title: "OBS Mode",
       image: "/images/editor-obs.png",
       isComingSoon: true,
     },
     {
-      id: 3,
       title: "Audio Mode",
       image: "/images/editor-audio.png",
       isComingSoon: true,
     },
     {
-      id: 4,
       title: "Machine Translation",
       image: "/images/editor.png",
       isComingSoon: true,
@@ -112,15 +122,15 @@ export default function Index() {
                     Download
                   </motion.a>
                   <div className="my-5 flex gap-5">
-                    <Releases />
+                    <Releases repo={repo} />
                   </div>
                 </div>
               </div>
 
               <Tab.List className="mx-4 flex space-x-1 border-b border-secondary/30 xl:mx-auto xl:w-2/3">
-                {categories.map((category) => (
+                {categories.map((category, index) => (
                   <Tab
-                    key={category.id}
+                    key={index}
                     className={({ selected }) =>
                       classNames(
                         "relative w-full rounded-t-xl py-2 text-xxs font-semibold uppercase hover:bg-white/[0.12] md:text-sm xl:py-5 xl:text-base xl:leading-5",

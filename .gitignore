@@ -40,4 +40,5 @@ yarn-error.log*
 !tsconfig.json
 
 .env 
+.env.local
 .contentlayer

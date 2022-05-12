@@ -1,36 +1,34 @@
 import React from "react";
 
-import { useGetDownloadUrlQuery } from "@/graphql/graphql";
+import {  GetDownloadUrlQuery } from "@/graphql/graphql";
 
 import AppleLogo from "../../public/logos/apple.svg";
 import LinuxLogo from "../../public/logos/linux.svg";
 import WindowsLogo from "../../public/logos/windows.svg";
 import styles from "../../styles/Home.module.css";
 
-export default function Releases() {
-  const { data, isFetching, isLoading, isError } = useGetDownloadUrlQuery(
-    undefined,
-    { cacheTime: 43200000, staleTime: Infinity }
-  );
 
-  const repoNode = data?.repository?.releases?.nodes![0];
+export default function Releases({ repo }: { repo: GetDownloadUrlQuery }) {
 
-  let relAssets = repoNode?.releaseAssets?.edges;
+  let relAssets = repo?.repository?.releases?.nodes![0]?.releaseAssets.edges;
+
+  // let relAssets = repoNode?.releaseAssets?.edges;
+
   relAssets = relAssets?.filter(
     (el) => el?.node?.contentType == "application/octet-stream"
   );
 
-  if (isLoading) {
-    return <h1 className={styles.title}>Loading</h1>;
-  }
+  // if (isLoading) {
+  //   return <h1 className={styles.title}>Loading</h1>;
+  // }
 
-  if (isError) {
-    return <h1 className={styles.title}> ERROR</h1>;
-  }
+  // if (isError) {
+  //   return <h1 className={styles.title}> ERROR</h1>;
+  // }
 
-  if (isFetching) {
-    return <h1 className={styles.title}> Fetching</h1>;
-  }
+  // if (isFetching) {
+  //   return <h1 className={styles.title}> Fetching</h1>;
+  // }
 
   // function download(url: string) {
   //   if (typeof window !== "undefined") {
