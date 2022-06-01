@@ -63,21 +63,23 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
       image: "/images/editor-audio.png",
       isComingSoon: true,
     },
-    {
-      title: "Machine Translation",
-      image: "/images/editor.png",
-      isComingSoon: true,
-    },
+    // {
+    //   title: "Machine Translation",
+    //   image: "/images/editor.png",
+    //   isComingSoon: true,
+    // },
   ];
 
   const [categories] = useState(categoriesItems);
 
   return (
     <>
+      <Menu />
+
       <Tab.Group as={Fragment}>
         <div className="bg-primary bg-gradient-to-tr from-primaryDHue to-primaryLHue pb-52">
           <div className="container mx-auto">
-            <Menu />
+            {/* <Menu /> */}
             <div className="py-20 text-center xl:py-40">
               <motion.div
                 initial="hidden"
@@ -93,12 +95,12 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
                   Autographa
                 </h1>
                 <p className="mx-auto w-1/2 text-base font-semibold xl:w-auto xl:text-xl xl:leading-8">
-                  Scripture drafting and editing made simple
+                  Scripture editing made simple
                 </p>
               </motion.div>
 
-              <div className="my-24 mx-auto md:flex xl:w-2/5">
-                <div className="mx-4 mb-10 flex flex-col items-center md:mb-0 md:w-1/2 xl:mx-10">
+              <div className="my-24 mx-auto justify-center md:flex xl:w-2/5">
+                {/* <div className="mx-4 mb-10 flex flex-col items-center md:mb-0 md:w-1/2 xl:mx-10">
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -109,7 +111,7 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
                   >
                     Try it online
                   </motion.a>
-                </div>
+                </div> */}
                 <div className="mx-4 flex flex-col items-center md:w-1/2 xl:mx-10">
                   <motion.a
                     whileHover={{ scale: 1.1 }}
