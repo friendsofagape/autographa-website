@@ -28,7 +28,7 @@ const solutions = [
   {
     name: 'Docs',
     description: 'Speak directly to your customers in a more meaningful way.',
-    href: 'https://autographa-docs.netlify.app/',
+    href: 'https://docs.autographa.org/',
     icon: CursorClickIcon,
   },
 ]

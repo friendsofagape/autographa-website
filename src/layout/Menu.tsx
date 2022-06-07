@@ -27,7 +27,7 @@ export default function Menu() {
             <a href="#" className="text-base font-medium text-white hover:text-gray-900">
               Features
             </a>
-            <a href="https://autographa-docs.netlify.app/" className="text-base font-medium text-white hover:text-gray-900">
+            <a href="https://docs.autographa.org/" className="text-base font-medium text-white hover:text-gray-900">
               Docs
             </a>
             {/* <a href="#" className="text-base font-medium text-white hover:text-gray-900">
