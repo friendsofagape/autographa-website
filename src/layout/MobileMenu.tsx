@@ -14,33 +14,22 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 
+import AutographaLogo from '../../public/logos/autographa.svg'
+
 import { classNames } from '@/utils/functions'
 
 const solutions = [
   {
-    name: 'Analytics',
+    name: 'Features',
     description: 'Get a better understanding of where your traffic is coming from.',
     href: '#',
     icon: ChartBarIcon,
   },
   {
-    name: 'Engagement',
+    name: 'Docs',
     description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
+    href: 'https://docs.autographa.org/',
     icon: CursorClickIcon,
-  },
-  { name: 'Security', description: "Your customers' data will be safe and secure.", href: '#', icon: ShieldCheckIcon },
-  {
-    name: 'Integrations',
-    description: "Connect with third-party tools that you're already using.",
-    href: '#',
-    icon: ViewGridIcon,
-  },
-  {
-    name: 'Automations',
-    description: 'Build strategic funnels that will drive your customers to convert',
-    href: '#',
-    icon: RefreshIcon,
   },
 ]
 
@@ -93,11 +82,7 @@ export default function MobileMenu() {
             <div className="flex items-center justify-between">
               <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-                />
+                <AutographaLogo className="text-primary h-10" />
               </div>
               <div className="-mr-2">
                 <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -114,7 +99,7 @@ export default function MobileMenu() {
                     href={item.href}
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
-                    <item.icon className="shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
+                    {/* <item.icon className="shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" /> */}
                     <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
                   </a>
                 ))}
@@ -122,37 +107,13 @@ export default function MobileMenu() {
             </div>
           </div>
           <div className="py-6 px-5 space-y-6">
-            <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-              <a href="#" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                Pricing
-              </a>
-
-              <a href="#" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                Docs
-              </a>
-              {resources.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
             <div>
               <a
                 href="#"
-                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-indigo-700"
               >
-                Sign up
+                Download
               </a>
-              <p className="mt-6 text-center text-base font-medium text-gray-500">
-                Existing customer?{' '}
-                <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                  Sign in
-                </a>
-              </p>
             </div>
           </div>
         </div>
