@@ -14,9 +14,9 @@ export default function Releases({ repo }: { repo: GetDownloadUrlQuery }) {
 
   // let relAssets = repoNode?.releaseAssets?.edges;
 
-  relAssets = relAssets?.filter(
-    (el) => el?.node?.contentType == "application/octet-stream"
-  );
+  // relAssets = relAssets?.filter(
+  //   (el) => el?.node?.contentType == "application/octet-stream"
+  // );
 
   // if (isLoading) {
   //   return <h1 className={styles.title}>Loading</h1>;
@@ -39,6 +39,7 @@ export default function Releases({ repo }: { repo: GetDownloadUrlQuery }) {
   return (
     <div className="flex gap-5 text-xs font-medium tracking-wider text-white xl:text-base">
       {relAssets?.map((element, index) => {
+      
         if (element?.node?.name.endsWith(".exe"))
           return (
             <a
