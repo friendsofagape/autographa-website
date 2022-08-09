@@ -48,11 +48,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 interface category {
   title: string;
   image: string;
-  isComingSoon: boolean;
+  isComingSoon?: boolean;
 }
 
 export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
   const relAssets = repo?.repository?.releases?.nodes![0]?.releaseAssets.edges;
+  const version = repo?.repository?.releases?.nodes![0]?.tagName;
 
   const categoriesItems: category[] = [
     {
@@ -63,7 +64,6 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
     {
       title: "OBS Mode",
       image: "/images/editor-obs.png",
-      isComingSoon: true,
     },
     {
       title: "Audio Mode",
@@ -80,9 +80,6 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
   const [categories] = useState(categoriesItems);
 
   const [downloadUrl, setDownloadUrl] = useState("#");
-
-  console.log(OsTypes.Windows, isMacOs);
-  console.log(OsTypes.MAC_OS, isWindows);
 
   useEffect(() => {
     relAssets?.map((element, index) => {
@@ -149,7 +146,7 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
                                 p-2 px-4 text-base font-bold 
                                 text-white shadow-sm hover:bg-white hover:text-secondary xl:px-8 xl:py-4 xl:text-2xl"
                   >
-                    Download
+                    Download {version}
                   </motion.a>
                   <div className="my-5 flex gap-5">
                     <Releases repo={repo} />
