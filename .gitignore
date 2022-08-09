@@ -42,3 +42,5 @@ yarn-error.log*
 .env 
 .env.local
 .contentlayer
+
+.vscode

@@ -4,6 +4,7 @@ import { Tab } from "@headlessui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GraphQLClient } from "graphql-request";
 import { GetStaticProps } from "next";
+import { OsTypes, isWindows, isMacOs } from "react-device-detect";
 
 import Releases from "@/components/Releases";
 import {
@@ -19,7 +20,6 @@ import { allFeatureLists } from "contentlayer/generated";
 import FeatureSection from "src/home/FeatureList";
 import SlidesGroup from "src/home/Slides";
 
-import { OsTypes, isWindows, isMacOs } from "react-device-detect";
 
 const hasuraUrl = process.env.GRAPHQL_URL;
 const token = process.env.GITHUB_TOKEN;
