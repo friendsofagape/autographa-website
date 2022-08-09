@@ -21,10 +21,10 @@ import FeatureSection from "src/home/FeatureList";
 import SlidesGroup from "src/home/Slides";
 
 
-const hasuraUrl = process.env.GRAPHQL_URL;
+const graphQLUrl = process.env.GRAPHQL_URL;
 const token = process.env.GITHUB_TOKEN;
 
-const client = new GraphQLClient(hasuraUrl as string, {
+const client = new GraphQLClient(graphQLUrl as string, {
   headers: {
     authorization: `Bearer ${token as string}`,
   },

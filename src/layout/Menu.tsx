@@ -2,6 +2,7 @@ import { Popover } from '@headlessui/react'
 import MobileMenu from '@/layout/MobileMenu'
 
 import { MenuIcon } from '@heroicons/react/outline'
+
 import AutographaLogo from '../../public/logos/autographa.svg'
 
 export default function Menu() {
@@ -24,7 +25,7 @@ export default function Menu() {
           </div>
 
           <nav className="hidden md:flex space-x-10">
-            <a href="#" className="text-base font-medium text-white hover:text-gray-900">
+            <a href="#features" className="text-base font-medium text-white hover:text-gray-900">
               Features
             </a>
             <a href="https://docs.autographa.org/" className="text-base font-medium text-white hover:text-gray-900">
@@ -40,10 +41,10 @@ export default function Menu() {
               Try It
             </a> */}
             <a
-              href="#"
+              href="https://github.com/friendsofagape/autographa/releases"
               className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-secondary hover:bg-white hover:text-secondary"
             >
-              Download
+              Github
             </a>
           </div>
         </div>

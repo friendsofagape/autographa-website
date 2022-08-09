@@ -7,7 +7,7 @@ import { FeatureList, Feature } from "contentlayer/generated";
 export default function Features(props: { features: Feature[] }) {
   const { features } = props;
   return (
-    <div className="bg-gray-100">
+    <div id="features" className="bg-gray-100">
       <div className="container mx-auto py-40">
         <h2 className="heading">Features</h2>
         <div className="my-40 mx-4 grid grid-cols-2 gap-4 xl:mx-auto xl:grid-cols-3 xl:gap-10">
