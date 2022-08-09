@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 import { Tab } from "@headlessui/react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,7 +6,11 @@ import { GraphQLClient } from "graphql-request";
 import { GetStaticProps } from "next";
 
 import Releases from "@/components/Releases";
-import { useGetDownloadUrlQuery, GetDownloadUrlDocument, GetDownloadUrlQuery } from "@/graphql/graphql";
+import {
+  useGetDownloadUrlQuery,
+  GetDownloadUrlDocument,
+  GetDownloadUrlQuery,
+} from "@/graphql/graphql";
 import Footer from "@/layout/Footer";
 import Menu from "@/layout/Menu";
 import { classNames } from "@/utils/functions";
@@ -14,6 +18,8 @@ import { allSlideLists, allHeros } from "contentlayer/generated";
 import { allFeatureLists } from "contentlayer/generated";
 import FeatureSection from "src/home/FeatureList";
 import SlidesGroup from "src/home/Slides";
+
+import { OsTypes, isWindows, isMacOs } from "react-device-detect";
 
 const hasuraUrl = process.env.GRAPHQL_URL;
 const token = process.env.GITHUB_TOKEN;
@@ -26,7 +32,10 @@ const client = new GraphQLClient(hasuraUrl as string, {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const data: GetDownloadUrlQuery = await client.request(GetDownloadUrlDocument);
+    const data: GetDownloadUrlQuery = await client.request(
+      GetDownloadUrlDocument
+    );
+
     return {
       props: { repo: data },
       revalidate: 21600, // revalidate every 6 hours
@@ -43,9 +52,7 @@ interface category {
 }
 
 export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
-
-  // const { status, data, error, isFetching } = useGetDownloadUrlQuery(client, undefined, { cacheTime: 43200000, staleTime: Infinity })
-
+  const relAssets = repo?.repository?.releases?.nodes![0]?.releaseAssets.edges;
 
   const categoriesItems: category[] = [
     {
@@ -71,6 +78,27 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
   ];
 
   const [categories] = useState(categoriesItems);
+
+  const [downloadUrl, setDownloadUrl] = useState("#");
+
+  console.log(OsTypes.Windows, isMacOs);
+  console.log(OsTypes.MAC_OS, isWindows);
+
+  useEffect(() => {
+    relAssets?.map((element, index) => {
+      if (element?.node?.name.endsWith(".exe") && isWindows) {
+        setDownloadUrl(element?.node?.downloadUrl);
+      } else if (element?.node?.name.endsWith(".dmg") && isMacOs) {
+        setDownloadUrl(element?.node?.downloadUrl);
+      } else if (
+        element?.node?.name.endsWith(".deb") &&
+        !isMacOs &&
+        !isWindows
+      ) {
+        setDownloadUrl(element?.node?.downloadUrl);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -116,7 +144,7 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    href="#"
+                    href={downloadUrl}
                     className="block items-center justify-center whitespace-nowrap rounded-lg border border-transparent bg-secondary 
                                 p-2 px-4 text-base font-bold 
                                 text-white shadow-sm hover:bg-white hover:text-secondary xl:px-8 xl:py-4 xl:text-2xl"
