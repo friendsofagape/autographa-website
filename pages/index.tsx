@@ -52,8 +52,14 @@ interface category {
 }
 
 export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
-  const relAssets = repo?.repository?.releases?.nodes![0]?.releaseAssets.edges;
-  const version = repo?.repository?.releases?.nodes![0]?.tagName;
+  // Exclude Pre Releases (alpha, beta)
+  const filtered = repo?.repository?.releases?.nodes?.filter(a => a?.isPrerelease === false);
+
+  // const relAssets = repo?.repository?.releases?.nodes![0]?.releaseAssets.edges;
+  // const version = repo?.repository?.releases?.nodes![0]?.tagName;
+
+  const relAssets = filtered![0]?.releaseAssets.edges;
+  const version = filtered![0]?.tagName;
 
   const categoriesItems: category[] = [
     {
@@ -76,6 +82,7 @@ export default function Index({ repo }: { repo: GetDownloadUrlQuery }) {
     //   isComingSoon: true,
     // },
   ];
+
 
   const [categories] = useState(categoriesItems);
 
