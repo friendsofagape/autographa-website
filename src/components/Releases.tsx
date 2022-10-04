@@ -10,7 +10,12 @@ import styles from "../../styles/Home.module.css";
 
 export default function Releases({ repo }: { repo: GetDownloadUrlQuery }) {
 
-  const relAssets = repo?.repository?.releases?.nodes![0]?.releaseAssets.edges;
+  const filtered = repo?.repository?.releases?.nodes?.filter(a => a?.isPrerelease === false);
+
+
+  // const relAssets = repo?.repository?.releases?.nodes![0]?.releaseAssets.edges;
+
+  const relAssets = filtered![0]?.releaseAssets.edges;
 
   // let relAssets = repoNode?.releaseAssets?.edges;
 
