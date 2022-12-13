@@ -1,6 +1,6 @@
-query getDownloadURL {
-  repository(owner: "friendsofagape", name: "autographa") {
-    releases(last: 10, orderBy: {field: CREATED_AT, direction: DESC}) {
+query getDownloadURL { 
+    repository(owner: "friendsofagape", name: "autographa") {
+    releases(first: 10, orderBy: {field: CREATED_AT, direction: DESC}) {
       nodes {
         name
         tagName
